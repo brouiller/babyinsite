@@ -3,11 +3,11 @@ const { Sequelize, Model, DataTypes } = require("sequelize");
 // import our database connection from config.js
 const sequelize = require("../config/connection");
 
-// Initialize Sleep model (table) by extending off Sequelize's Model class
-class Sleep extends Model {}
+// Initialize Diaper model (table) by extending off Sequelize's Model class
+class Diaper extends Model {}
 
-// set up fields and rules for Sleep model
-Sleep.init(
+// set up fields and rules for Diaper model
+Diaper.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,14 +15,11 @@ Sleep.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    start: {
-      type: DataTypes.DATE,
+    type: {
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        isDate: true,
-      },
     },
-    stop: {
+    time: {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
@@ -43,8 +40,8 @@ Sleep.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "sleep",
+    modelName: "diaper",
   }
 );
 
-module.exports = Sleep;
+module.exports = Diaper;
