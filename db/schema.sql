@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS babyinsite_db;
+
+-- CREATE DATABASE
+CREATE DATABASE babyinsite_db;
