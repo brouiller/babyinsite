@@ -14,3 +14,7 @@ const sleepData = [
     time: "2016-08-12 04:05:02",
   },
 ];
+
+const seedSleep = Sleep.bulkCreate(sleepData);
+
+module.exports = seedSleep;

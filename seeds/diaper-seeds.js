@@ -14,3 +14,7 @@ const diaperData = [
     time: "2016-08-09 04:05:02",
   },
 ];
+
+const seedDiaper = Diaper.bulkCreate(diaperData);
+
+module.exports = seedDiaper;
