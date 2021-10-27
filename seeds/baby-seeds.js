@@ -3,7 +3,7 @@ const { Baby } = require("../models");
 const babyData = [
   {
     name: "Superman",
-    dob: "2021-02-08 06:42:30",
+    dob: "1633372376",
   },
 ];
 
