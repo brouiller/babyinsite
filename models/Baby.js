@@ -16,11 +16,8 @@ Baby.init(
       allowNull: false,
     },
     dob: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        isDate: true,
-      },
     },
   },
   {

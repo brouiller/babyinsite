@@ -20,11 +20,8 @@ Diaper.init(
       allowNull: false,
     },
     time: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      validate: {
-        isDate: true,
-      },
     },
   },
   {
