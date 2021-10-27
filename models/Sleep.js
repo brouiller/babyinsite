@@ -1,5 +1,5 @@
 // import important parts of sequelize library
-const { Sequelize, Model, DataTypes } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
 // import our database connection from config.js
 const sequelize = require("../config/connection");
 
@@ -29,21 +29,13 @@ Sleep.init(
         isDate: true,
       },
     },
-    baby_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "baby",
-        key: "id",
-      },
-    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "sleep",
+    modelName: "Sleep",
   }
 );
 

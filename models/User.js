@@ -41,14 +41,7 @@ User.init(
         len: [8],
       },
     },
-    baby_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "baby",
-        key: "id",
-      },
-    },
+
   },
   {
     hooks: {
