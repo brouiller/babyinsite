@@ -15,6 +15,6 @@ const diaperData = [
   },
 ];
 
-const seedDiaper = Diaper.bulkCreate(diaperData);
+const seedDiaper = () => Diaper.bulkCreate(diaperData);
 
 module.exports = seedDiaper;
