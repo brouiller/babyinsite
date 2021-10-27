@@ -15,6 +15,6 @@ const sleepData = [
   },
 ];
 
-const seedSleep = Sleep.bulkCreate(sleepData);
+const seedSleep = () => Sleep.bulkCreate(sleepData);
 
 module.exports = seedSleep;

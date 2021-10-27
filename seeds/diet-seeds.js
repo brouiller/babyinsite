@@ -23,6 +23,6 @@ const dietData = [
   },
 ];
 
-const seedDiet = Diet.bulkCreate(dietData);
+const seedDiet = () => Diet.bulkCreate(dietData);
 
 module.exports = seedDiet;

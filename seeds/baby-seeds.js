@@ -7,6 +7,6 @@ const babyData = [
   },
 ];
 
-const seedBaby = Baby.bulkCreate(babyData);
+const seedBaby = () => Baby.bulkCreate(babyData);
 
 module.exports = seedBaby;
