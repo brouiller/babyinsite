@@ -22,3 +22,7 @@ const dietData = [
     quantity: 1,
   },
 ];
+
+const seedDiet = Diet.bulkCreate(dietData);
+
+module.exports = seedDiet;

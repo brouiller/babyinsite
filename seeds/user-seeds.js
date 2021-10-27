@@ -8,3 +8,7 @@ const userData = [
     password: "root1234",
   },
 ];
+
+const seedUser = User.bulkCreate(userData);
+
+module.exports = seedUser;
