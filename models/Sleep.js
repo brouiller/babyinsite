@@ -15,14 +15,7 @@ Sleep.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    start: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        isDate: true,
-      },
-    },
-    stop: {
+    time: {
       type: DataTypes.DATE,
       allowNull: false,
       validate: {
