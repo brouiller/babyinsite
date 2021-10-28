@@ -3,15 +3,19 @@ const { Sleep } = require("../models");
 const sleepData = [
   {
     time: "1633372376",
+    baby_id: 1,
   },
   {
     time: "1633372376",
+    baby_id: 1,
   },
   {
     time: "1633372376",
+    baby_id: 1,
   },
   {
     time: "1633372376",
+    baby_id: 1,
   },
 ];
 

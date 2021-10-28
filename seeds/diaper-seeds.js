@@ -4,14 +4,17 @@ const diaperData = [
   {
     type: "Wet",
     time: "1633372376",
+    baby_id: 1,
   },
   {
     type: "Dry",
     time: "1633372376",
+    baby_id: 1,
   },
   {
     type: "Soiled",
     time: "1633372376",
+    baby_id: 1,
   },
 ];
 
