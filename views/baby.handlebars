@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header">
+    <h2>Baby</h2>
+  </div>
+  <div id="baby">
+    <form id="baby-form" class="card-body">
+      <label for="babyDropdown">Choose a baby:</label>
+
+      <select name="babyDropdown" id="babyDropdown">
+        <option value=""></option>
+        {{#each babyData as |baby|}}
+          <option value="{{baby.id}}">{{baby.name}} - {{baby.dob}}</option>
+        {{/each}}
+      </select>
+      <p>Or add a baby</p>
+      <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" />
+      </div>
+      <div>
+        <label for="dob">Date of birth:</label>
+        <input type="date" id="dob" />
+      </div>
+      <button
+        type="submit"
+        id="baby
+      -btn"
+        class="btn"
+      >Submit</button>
+
+    </form>
+  </div>
+</div>
+<script src="/js/baby.js"></script>
