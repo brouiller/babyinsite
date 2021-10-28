@@ -53,7 +53,7 @@ header {
 
 header h1 {
   display: inline-block;
-  font-size: 48px;
+  font-size: 3rem;
   border-bottom: 0.2rem dotted var(--light);
 }
 
