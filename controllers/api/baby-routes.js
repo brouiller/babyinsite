@@ -3,41 +3,25 @@ const { Baby, User } = require("../../models/");
 const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
-  const body = req.body;
-
+  let body = req.body;
   if (!req.body.babyDropdown) {
+    delete body.babyDropdown;
     try {
-      const newBaby = await Baby.create({
-        ...body,
-      });
-      const getBabyId = await Baby.findOne({
-        where: {
-          name: req.body.name,
-          dob: req.body.dob,
-        },
-      });
-      const updateUser = await User.findOne({
-        attributes: ["baby_id"],
-        where: {
-          id: req.session.user_id,
-        },
-      });
-      updateUser.baby_id = getBabyId.id;
-      updateUser.save();
-
-      res.json(newBaby);
+      const newBaby = await Baby.create(body);
+      res.status(201);
     } catch (err) {
       res.status(500).json(err);
     }
   } else {
-    const updateUser = await User.findOne({
-      attributes: ["baby_id"],
-      where: {
-        id: req.session.user_id,
-      },
-    });
-    updateUser.baby_id = req.body.babyDropdown;
-    updateUser.save();
+    try {
+      const result = await User.update(
+        { baby_id: req.body.babyDropdown },
+        { where: { id: req.session.user_id } }
+      );
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   }
 });
 

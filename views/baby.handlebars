@@ -9,7 +9,7 @@
       <select name="babyDropdown" id="babyDropdown">
         <option value=""></option>
         {{#each babyData as |baby|}}
-          <option value="{{baby.id}}">{{baby.name}} - {{baby.dob}}</option>
+          <option value="{{baby.id}}">{{baby.name}} - {{format_date baby.dob}}</option>
         {{/each}}
       </select>
       <p>Or add a baby</p>

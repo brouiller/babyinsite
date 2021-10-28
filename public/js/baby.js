@@ -4,19 +4,20 @@ const babyFormHandler = async function (event) {
   const babyDropdownEl = document.querySelector("#babyDropdown");
   const nameEl = document.querySelector("#name");
   const dobEl = document.querySelector("#dob");
+  const dobConversion = Date.parse(dobEl.value);
+  var dob = parseInt(dobConversion);
+  dob = (dob / 1000) + 60120;
 
   const response = await fetch("/api/baby", {
     method: "POST",
     body: JSON.stringify({
       babyDropdown: babyDropdownEl.value,
       name: nameEl.value,
-      dob: dobEl.value,
+      dob: dob,
     }),
     headers: { "Content-Type": "application/json" },
   });
-
-  if (response.ok) {
-    document.location.replace("/");
+  if (response.status == 201) {
   } else {
     alert("Baby not added!");
   }
