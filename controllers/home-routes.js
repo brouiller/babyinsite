@@ -5,7 +5,7 @@ const { Baby } = require("../models");
 const router = require("express").Router();
 
 // get all relation related to baby
-router.get("/", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const homeData = await Baby.findAll({ include: { all: true } });
 
