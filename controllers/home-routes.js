@@ -33,9 +33,17 @@ router.get("/login", (req, res) => {
 
 router.get("/signup", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect("/baby");
     return;
   }
   res.render("signup");
+});
+
+router.get("/baby", (req, res) => {
+  if (req.session.logged_in) {
+    res.render("baby");
+    return;
+  }
+  res.redirect("/login");
 });
 module.exports = router;
