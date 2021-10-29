@@ -4,6 +4,8 @@ const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
   const body = req.body;
+  // test if the input form submit data
+  console.log(body);
 
   try {
     const newDiaper = await Diaper.create({
