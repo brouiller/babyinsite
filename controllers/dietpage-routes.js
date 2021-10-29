@@ -1,17 +1,17 @@
 const withAuth = require("../utils/auth");
 
-const { Baby } = require("../models");
+const { Baby, Diet } = require("../models");
 
 const router = require("express").Router();
 
 // get diet data
-router.get("/diet", withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const dietData = await Baby.findAll({ include: [Diet] });
 
     const babyData = dietData.map((data) => data.get({ plain: true }));
 
-    res.render("home", {
+    res.render("diet", {
       babyData,
       logged_in: req.session.logged_in,
     });

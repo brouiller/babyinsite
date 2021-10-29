@@ -10,7 +10,7 @@ router.get("/", withAuth, async (req, res) => {
     const homeData = await Baby.findAll({ include: { all: true } });
     const babyData = homeData.map((data) => data.get({ plain: true }));
 
-    // console.log(babyData);
+    console.log(babyData);
 
     //res.json(babyData);
 
