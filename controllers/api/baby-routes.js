@@ -8,6 +8,10 @@ router.post("/", withAuth, async (req, res) => {
     delete body.babyDropdown;
     try {
       const newBaby = await Baby.create(body);
+      const result = await User.update(
+        { baby_id: newBaby.dataValues.id },
+        { where: { id: req.session.user_id } }
+      );
       res.status(201);
     } catch (err) {
       res.status(500).json(err);
