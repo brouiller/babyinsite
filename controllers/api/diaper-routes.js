@@ -1,16 +1,17 @@
 const router = require("express").Router();
-const { Diaper } = require("../../models/");
+const { Diaper, User } = require("../../models/");
 const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
   const body = req.body;
   // test if the input form submit data
-  console.log(body);
-
   try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+    body["baby_id"] = userData.baby_id;
     const newDiaper = await Diaper.create({
       ...body,
-      baby_id: req.session.baby_id,
     });
     res.json(newDiaper);
   } catch (err) {
