@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Sleep } = require("../../models/");
+const { Sleep, User } = require("../../models/");
 const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
@@ -7,9 +7,12 @@ router.post("/", withAuth, async (req, res) => {
   // test if the input form submit data
   console.log(body);
   try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+    body["baby_id"] = userData.baby_id;
     const newSleep = await Sleep.create({
       ...body,
-      baby_id: req.session.baby_id,
     });
     res.json(newSleep);
   } catch (err) {

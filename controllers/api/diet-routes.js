@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Diet } = require("../../models/");
+const { Diet, User } = require("../../models/");
 const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
@@ -8,9 +8,12 @@ router.post("/", withAuth, async (req, res) => {
   console.log(body);
 
   try {
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+    body["baby_id"] = userData.baby_id;
     const newDiet = await Diet.create({
       ...body,
-      baby_id: req.session.baby_id,
     });
     res.json(newDiet);
   } catch (err) {

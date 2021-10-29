@@ -21,7 +21,7 @@ const diaperFormHandler = async function (event) {
 
   console.log(response);
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/diaper");
   } else {
     alert("Failed to submit diaper form");
   }
@@ -58,7 +58,7 @@ const dietFormHandler = async function (event) {
 
   console.log(response);
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/diet");
   } else {
     alert("Failed to submit a diet form");
   }
@@ -90,7 +90,7 @@ const sleepFormHandler = async function (event) {
 
   console.log(response);
   if (response.ok) {
-    document.location.replace("/");
+    document.location.replace("/sleep");
   } else {
     alert("Failed to submit a sleep form");
   }
