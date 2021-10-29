@@ -1,17 +1,17 @@
 const withAuth = require("../utils/auth");
 
-const { Baby } = require("../models");
+const { Baby, Sleep } = require("../models");
 
 const router = require("express").Router();
 
 // get sleep data
-router.get("/sleep", withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const sleepData = await Baby.findAll({ include: [Sleep] });
 
     const babyData = sleepData.map((data) => data.get({ plain: true }));
 
-    res.render("home", {
+    res.render("sleep", {
       babyData,
       logged_in: req.session.logged_in,
     });
