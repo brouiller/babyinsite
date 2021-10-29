@@ -9,21 +9,25 @@
         {{!-- {{insert diet data here}} --}}
     </div>
 </div>
-
+{{#each foodQuantity as |food|}}
+    {{log this}}
+    <div>this is the day{{food.day}}</div>
+{{/each}}
 
 
 <script>
-
-
-let values = [5, 4, 6, 7, 3, 4, 7];
-let labels = ["Monday","Tuesday", "Wednesday", "Thursday","Friday", "Saturday", "Sunday"];
+    
+let labels = [];
+{{!-- let time = []; --}}
+let values = [];
 
 {{!-- this is not setup yet --}}
-{{!-- {{#each babyData}}
-    {{log this}}
-    labels.push("{{id}}")
-    values.push("{{time}}")
-{{/each}} --}}
+{{#each sortedFoodQuantity}}
+    {{!-- {{log this}} --}}
+    labels.push("{{day}}")
+    {{!-- time.push("{{time}}") --}}
+    values.push("{{quantity}}")
+{{/each}}
 
 console.log(values);
 

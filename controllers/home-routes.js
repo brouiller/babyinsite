@@ -1,13 +1,21 @@
 const withAuth = require("../utils/auth");
 
-const { Baby } = require("../models");
+const { User, Baby } = require("../models");
 
 const router = require("express").Router();
 
 // get all relation related to baby
 router.get("/", withAuth, async (req, res) => {
   try {
-    const homeData = await Baby.findAll({ include: { all: true } });
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+    });
+    const homeData = await Baby.findAll(
+      {
+        where: { id: userData.baby_id },
+      },
+      { include: { all: true } }
+    );
     const babyData = homeData.map((data) => data.get({ plain: true }));
 
     console.log(babyData);
