@@ -5,7 +5,7 @@ const { Baby } = require("../models");
 const router = require("express").Router();
 
 // get diaper data
-router.get("/diaper", withAuth, async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const diaperData = await Baby.findAll({ include: [Diaper] });
 

@@ -33,9 +33,23 @@ router.get("/login", (req, res) => {
 
 router.get("/signup", (req, res) => {
   if (req.session.logged_in) {
-    res.redirect("/");
+    res.redirect("/baby");
     return;
   }
   res.render("signup");
+});
+
+// get all relation related to baby
+router.get("/baby", withAuth, async (req, res) => {
+  try {
+    const homeData = await Baby.findAll();
+    const babyData = homeData.map((data) => data.get({ plain: true }));
+    res.render("baby", {
+      babyData,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 module.exports = router;

@@ -1,17 +1,27 @@
 const router = require("express").Router();
-const { Baby } = require("../../models/");
+const { Baby, User } = require("../../models/");
 const withAuth = require("../../utils/auth");
 
 router.post("/", withAuth, async (req, res) => {
-  const body = req.body;
-
-  try {
-    const newBaby = await Baby.create({
-      ...body,
-    });
-    res.json(newBaby);
-  } catch (err) {
-    res.status(500).json(err);
+  let body = req.body;
+  if (!req.body.babyDropdown) {
+    delete body.babyDropdown;
+    try {
+      const newBaby = await Baby.create(body);
+      res.status(201);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    try {
+      const result = await User.update(
+        { baby_id: req.body.babyDropdown },
+        { where: { id: req.session.user_id } }
+      );
+      res.status(201).json(result);
+    } catch (err) {
+      res.status(500).json(err);
+    }
   }
 });
 
