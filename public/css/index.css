@@ -35,7 +35,7 @@ h5 {
 
 a {
   color: var(--dark);
-  text-decoration: underline;
+  /* text-decoration: underline; */
   padding: 1rem;
 }
 a:hover {

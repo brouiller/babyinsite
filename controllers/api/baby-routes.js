@@ -18,7 +18,7 @@ router.post("/", withAuth, async (req, res) => {
         { baby_id: req.body.babyDropdown },
         { where: { id: req.session.user_id } }
       );
-      res.status(200).json(result);
+      res.status(201).json(result);
     } catch (err) {
       res.status(500).json(err);
     }
