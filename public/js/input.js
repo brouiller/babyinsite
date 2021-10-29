@@ -5,14 +5,20 @@ const diaperFormHandler = async function (event) {
   const diaperTypeEl = document.querySelector("#diaper-type");
   const diaperTimeEl = document.querySelector("#diaper-changeTime");
 
+  // convert time to timestamp
+  let timeValue = diaperTimeEl.value;
+  timeValue = new Date(timeValue);
+  newTime = timeValue.getTime() / 1000;
+  //fetch post data to backend
   const response = await fetch("api/diaper", {
     method: "POST",
     body: JSON.stringify({
       type: diaperTypeEl.value,
-      time: diaperTimeEl.value,
+      time: newTime,
     }),
     headers: { "Content-Type": "application/json" },
   });
+
   console.log(response);
   if (response.ok) {
     document.location.replace("/");
@@ -33,12 +39,17 @@ const dietFormHandler = async function (event) {
   const quantityEl = document.querySelector("#food-quantity");
   const eatTimeEl = document.querySelector("#eat-time");
 
+  // convert time to timestamp
+  let timeValue = eatTimeEl.value;
+  timeValue = new Date(timeValue);
+  newTime = timeValue.getTime() / 1000;
+  //fetch post data to backend
   const response = await fetch("/api/diet", {
     method: "POST",
     body: JSON.stringify({
       food: foodEl.value,
       quantity: quantityEl.value,
-      time: eatTimeEl.value,
+      time: newTime,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -62,10 +73,15 @@ const sleepFormHandler = async function (event) {
 
   const sleepTimeEl = document.querySelector("#sleep-time");
 
+  // convert time to timestamp
+  let timeValue = sleepTimeEl.value;
+  timeValue = new Date(timeValue);
+  newTime = timeValue.getTime() / 1000;
+  //fetch post data to backend
   const response = await fetch("/api/sleep", {
     method: "POST",
     body: JSON.stringify({
-      time: sleepTimeEl.value,
+      time: newTime,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -76,7 +92,7 @@ const sleepFormHandler = async function (event) {
   if (response.ok) {
     document.location.replace("/");
   } else {
-    alert("Failed to submit a diet form");
+    alert("Failed to submit a sleep form");
   }
 };
 

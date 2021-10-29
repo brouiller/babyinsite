@@ -6,7 +6,7 @@ const babyFormHandler = async function (event) {
   const dobEl = document.querySelector("#dob");
   const dobConversion = Date.parse(dobEl.value);
   var dob = parseInt(dobConversion);
-  dob = (dob / 1000) + 60120;
+  dob = dob / 1000 + 60120;
 
   const response = await fetch("/api/baby", {
     method: "POST",

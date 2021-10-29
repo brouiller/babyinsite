@@ -52,4 +52,9 @@ router.get("/baby", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// test input handlebars render input forms
+router.get("/input", withAuth, (req, res) => {
+  res.render("input");
+});
 module.exports = router;
