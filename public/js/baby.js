@@ -18,6 +18,7 @@ const babyFormHandler = async function (event) {
     headers: { "Content-Type": "application/json" },
   });
   if (response.status == 201) {
+    document.location.replace("/");
   } else {
     alert("Baby not added!");
   }
