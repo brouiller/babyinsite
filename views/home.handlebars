@@ -1,13 +1,10 @@
-{{babyData}}
 
-{{#each babyData as |baby| }}
+{{#each newBabyData as |baby| }}
 
-<div>{{Diapers.1.time}}</div>
+<div>Hours since {{baby.name}} ate last {{getTimeDifference diet.time}}</div>
 
-<div>Hours since {{baby.name}} ate last: </div>
+<div>{{baby.name}} slept {{getTimeDifference sleep.time}}</div>
 
-<div>{{baby.name}} has been awake for</div>
-
-<div>Hours since {{baby.name}} ate last:</div>
+<div>{{baby.name}} was last changed {{getTimeDifference diapers.time}}</div>
 
 {{/each}}

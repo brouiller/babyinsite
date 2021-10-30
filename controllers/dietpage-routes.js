@@ -29,11 +29,21 @@ router.get("/", withAuth, async (req, res) => {
       },
     });
 
+    const recentMealData = await Diet.findAll({
+      where: {
+        baby_id: {
+          [Op.eq]: userData.baby_id,
+        },
+        time: {
+          [Op.gt]: compareTimeInt,
+        },
+      },
+    });
+
     // 604801 = one week
 
-    console.log(compareTimeInt);
-
     const babyData = dietData.map((data) => data.get({ plain: true }));
+    const recentMeals = recentMealData.map((data) => data.get({ plain: true }));
 
     let sunday = 0;
     let monday = 0;
@@ -103,7 +113,7 @@ router.get("/", withAuth, async (req, res) => {
 
     res.render("diet", {
       sortedFoodQuantity,
-      foodQuantity,
+      recentMeals,
       logged_in: req.session.logged_in,
     });
   } catch (err) {

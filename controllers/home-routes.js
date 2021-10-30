@@ -10,20 +10,23 @@ router.get("/", withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
     });
-    const homeData = await Baby.findAll(
-      {
-        where: { id: userData.baby_id },
-      },
-      { include: { all: true } }
-    );
+    const homeData = await Baby.findAll({
+      where: { id: userData.baby_id },
+      include: { all: true },
+    });
     const babyData = homeData.map((data) => data.get({ plain: true }));
-
-    console.log(babyData);
-
-    //res.json(babyData);
+    // console.log(babyData[Diapers][babyData[Diapers].length - 1]);
+    let newBabyData = [
+      {
+        name: babyData[0].name,
+        diapers: babyData[0].Diapers[babyData[0].Diapers.length - 1],
+        diet: babyData[0].Diets[babyData[0].Diets.length - 1],
+        sleep: babyData[0].Sleep[babyData[0].Sleep.length - 1],
+      },
+    ];
 
     res.render("home", {
-      babyData,
+      newBabyData,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
