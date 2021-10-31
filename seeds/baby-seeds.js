@@ -2,7 +2,7 @@ const { Baby } = require("../models");
 
 const babyData = [
   {
-    name: "Superman",
+    name: "Olivia",
     dob: "1633372376",
   },
 ];
