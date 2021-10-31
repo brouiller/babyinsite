@@ -1,18 +1,17 @@
-<div class="card">
-  <div class="card-header">
-    <h2>Login</h2>
+<form id="login-form">
+  <h2>Log In</h2>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
   </div>
-  <form id="login-form" class="card-body">
-    <div>
-      <label for="email">Email</label>
-      <input type="text" id="email" />
-    </div>
-    <div>
-      <label for="password" class="form-label">Password</label>
-      <input type="password" id="password" />
-    </div>
-    <button type="submit" id="login-btn" class="btn">Login</button>
-    <a type="button" href="/signup">Click here to Sign Up</a>
-  </form>
-</div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" id="password" aria-describedby="passwordHelp">
+    <div id="passwordHelp" class="form-text">Your password must be at least 8 characters long.</div>
+  </div>
+  <div class="d-grid gap-2">
+  <button type="submit" class="btn btn-primary" aria-describedby="buttonHelp">Submit</button></div>
+  <div id="buttonHelp" class="form-text"><a type="button" href="/signup" class="rounded">Click here to Sign Up instead</a></div>
+</form>
 <script src="/js/login.js"></script>

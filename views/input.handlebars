@@ -1,76 +1,110 @@
-{{! diaper form card }}
-<div class="card mb-5">
-  <div class="card-header">
-    <h2>Diaper Data Form</h2>
-  </div>
-  <div id="diaper">
-    <form id="diaper-form" class="card-body">
-      <label for="diaper-type">Choose a diaper type:</label>
-      {{! select option for diaper type }}
-      <select name="diaper-type" id="diaper-type">
+{{! Diaper input form }}
+<div class="mb-3 p-2 input-container w-100">
+  <h2>Diaper</h2>
+  <form id="diaper-form" class="row align-items-center">
+    <div class="col-sm-5 form-floating mb-3">
+      <label for="diaper-type" class="form-label mx-3">Type of Diaper</label>
+      <select
+        name="diaper-type"
+        id="diaper-type"
+        class="form-select"
+        aria-label="Floating label select"
+      >
         <option value=""></option>
         <option value="Wet">Wet</option>
         <option value="Dry">Dry</option>
-        <option value="Solid">Soiled</option>
+        <option value="Solid">Solid</option>
       </select>
-      {{! input diaper change time }}
-      <label for="diaper-changeTime">Diaper change time:</label>
-      <input
-        type="datetime-local"
-        id="diaper-changeTime"
-        name="diaper-changeTime"
-      />
-      <button type="submit" id="diaper-btn" class="btn">Submit</button>
-    </form>
-  </div>
+    </div>
+    <div class="col-sm-5 form-floating mb-3">
+      <div class="input-group">
+        <span class="input-group-text" id="diaper-time">Diaper change time:</span>
+        <input
+          type="datetime-local"
+          id="diaper-changeTime"
+          class="form-control"
+          name="diaper-changeTime"
+          aria-describedby="diaper-time"
+        /></div></div>
+    <div class="col-sm-2 mb-3">
+      <button
+        type="submit"
+        id="diaper-btn"
+        class="btn btn-primary"
+      >Submit</button></div>
+  </form>
 </div>
-
-{{! diet form card }}
-<div class="card mb-5">
-  <div class="card-header">
-    <h2>Diet Data Form</h2>
-  </div>
-  <div id="diet">
-    <form id="diet-form" class="card-body">
-      <label for="food-type">Choose a food type:</label>
-      {{! select option for diet food type }}
-      <select name="food-type" id="food-type">
+{{! Diet input form }}
+<div class="mb-3 p-2 input-container w-100">
+  <h2>Diet</h2>
+  <form id="diet-form" class="row align-items-center">
+    <div class="col-sm-3 form-floating mb-3">
+      <label for="diet-type" class="form-label mx-3">Type of food</label>
+      <select
+        name="diet-type"
+        id="diet-type"
+        class="form-select"
+        aria-label="Floating label select"
+      >
         <option value=""></option>
         <option value="bottle">bottle</option>
         <option value="nursing">nursing</option>
-        <option value="snack">snack</option>
-        <option value="canned">canned</option>
+        <option value="snack">solid</option>
       </select>
-      {{! input for food quantity }}
-      <label for="food-quantity">Food quantity:</label>
-      <input
-        type="number"
-        id="food-quantity"
-        name="food-quantity"
-        min="1"
-        max="10"
-      />
-      {{! eat food time }}
-      <label for="eat-time">Eat time:</label>
-      <input type="datetime-local" id="eat-time" name="eat-time" />
-      <button type="submit" id="diet-btn" class="btn">Submit</button>
-    </form>
-  </div>
+    </div>
+    <div class="col-sm-3 form-floating mb-3">
+      <div class="input-group">
+        <span class="input-group-text" id="diet-quantity">Quantity:</span>
+        <input
+          type="number"
+          id="dietChangeQuantity"
+          name="dietChangeQuantity"
+          min="1"
+          max="10"
+          aria-describedby="diet-quantity"
+        />
+      </div>
+    </div>
+    <div class="col-sm-4 form-floating mb-3">
+      <div class="input-group">
+        <span class="input-group-text" id="diet-time">Eating time:</span>
+        <input
+          type="datetime-local"
+          id="dietChangeTime"
+          class="form-control"
+          name="dietChangeTime"
+          aria-describedby="diet-time"
+        /></div></div>
+    <div class="col-sm-2 mb-3">
+      <button
+        type="submit"
+        id="diet-btn"
+        class="btn btn-primary"
+      >Submit</button></div>
+  </form>
 </div>
 
-{{! sleep form card }}
-<div class="card mb-5">
-  <div class="card-header">
-    <h2>Sleep Data Form</h2>
-  </div>
-  <div id="sleep">
-    <form id="sleep-form" class="card-body">
-      {{! sleep time }}
-      <label for="sleep-time">Time:</label>
-      <input type="datetime-local" id="sleep-time" name="sleep-time" />
-      <button type="submit" id="sleep-btn" class="btn">Submit</button>
-    </form>
-  </div>
+{{! sleep input form }}
+<div class="mb-3 p-2 input-container w-100">
+  <h2>Sleep</h2>
+  <form id="sleep-form" class="row align-items-center">
+    <div class="col-sm-10 form-floating mb-3">
+      <div class="input-group">
+        <span class="input-group-text" id="sleep-time">Sleep time:</span>
+        <input
+          type="datetime-local"
+          id="sleep-changeTime"
+          class="form-control"
+          name="sleep-changeTime"
+          aria-describedby="sleep-time"
+        /></div></div>
+    <div class="col-sm-2 mb-3">
+      <button
+        type="submit"
+        id="sleep-btn"
+        class="btn btn-primary"
+      >Submit</button></div>
+  </form>
 </div>
 
 <script src="/js/input.js"></script>

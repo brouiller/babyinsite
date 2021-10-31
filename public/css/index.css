@@ -25,12 +25,16 @@ body {
   font-size: 1.2rem;
 }
 
-h1,
-h2 {
+h1 {
   font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+  text-align: center;
 }
 h5 {
   font-size: 1.5rem;
+  font-weight: bold;
 }
 
 a {
@@ -54,10 +58,49 @@ header {
 header h1 {
   display: inline-block;
   font-size: 3rem;
-  border-bottom: 0.2rem dotted var(--light);
+  border-bottom: 0.5rem dotted var(--light);
+  text-shadow: 0 0 0.5rem var(--light);
+}
+
+tr, th, td, thead, tbody {
+  color: var(--dark);
 }
 
 /* ------MAIN------ */
+main {
+  padding: 0;
+  border: 0.2rem solid var(--mid);
+}
+.card {
+  /* justify-content: center;
+  align-items: center; */
+  border: 0.5rem dotted var(--mid);
+  background-color: var(--light);
+}
+.btn-primary {
+    color: var(--light);
+    background-color: var(--dark);
+    border-color: var(--mid);
+}
+
+.btn-primary:hover {
+    color: var(--dark);
+    background-color: var(--light);
+    border-color: var(--mid);
+}
+
+.input-container {
+  border: 0.2rem dotted var(--mid)
+}
+
+#diaper-time, #diet-quantity, #diet-time, #sleep-time, #name-label, #dob-label {
+  background-color: white;
+  color: var(--dark);
+}
+
+input, .form-control, .form-select, .input-group-text {
+  border:1px solid var(--mid);
+}
 /*
 .no-gutters {
   margin-right: 0;

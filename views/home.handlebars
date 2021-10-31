@@ -1,10 +1,50 @@
+{{#each newBabyData as |baby|}}
 
-{{#each newBabyData as |baby| }}
+  <div class="card mb-3 p-2 w-100">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/imgs/diaper.png" class="img-fluid" alt="diaper icon" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Diaper</h5>
+          <p class="card-text">{{baby.name}}'s diaper was changed
+            <span class="fw-bold">{{getTimeDifference diapers.time}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div>Hours since {{baby.name}} ate last {{getTimeDifference diet.time}}</div>
+  <div class="card mb-3 p-2 w-100">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/imgs/bottle.png" class="img-fluid" alt="baby bottle icon" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Diet</h5>
+          <p class="card-text">{{baby.name}}
+            ate
+            <span class="fw-bold">{{getTimeDifference diet.time}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div>{{baby.name}} slept {{getTimeDifference sleep.time}}</div>
-
-<div>{{baby.name}} was last changed {{getTimeDifference diapers.time}}</div>
+  <div class="card mb-3 p-2 w-100">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/imgs/sleep.png" class="img-fluid" alt="sleep icon" />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">Sleep</h5>
+          <p class="card-text">{{baby.name}}
+            slept
+            <span class="fw-bold">{{getTimeDifference sleep.time}}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {{/each}}

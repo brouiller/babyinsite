@@ -8,7 +8,17 @@ module.exports = {
   // get hour:minute
   format_hourMin: (date) => {
     date = new Date(date * 1000);
-    return `${date.getHours()}:${date.getMinutes()}`;
+    if (date.getMinutes() < 10) {
+      minutes = "0" + date.getMinutes();
+    } else {
+      minutes = date.getMinutes();
+    }
+    if (date.getHours() < 10) {
+      hours = "0" + date.getHours();
+    } else {
+      hours = date.getHours();
+    }
+    return `${hours}:${minutes}`;
   },
 
   //get hour
@@ -27,6 +37,6 @@ module.exports = {
     var displayHours = parseInt(seconds / 3600);
     var minutes = seconds % 3600;
     var displayMinutes = parseInt(minutes / 60);
-    return `${displayHours} hour/s and ${displayMinutes} minute/s ago`;
+    return `${displayHours} hours and ${displayMinutes} minutes ago`;
   },
 };
