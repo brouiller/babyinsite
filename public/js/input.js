@@ -19,7 +19,6 @@ const diaperFormHandler = async function (event) {
     headers: { "Content-Type": "application/json" },
   });
 
-  console.log(response);
   if (response.ok) {
     document.location.replace("/diaper");
   } else {
@@ -56,7 +55,6 @@ const dietFormHandler = async function (event) {
     },
   });
 
-  console.log(response);
   if (response.ok) {
     document.location.replace("/diet");
   } else {
@@ -88,7 +86,6 @@ const sleepFormHandler = async function (event) {
     },
   });
 
-  console.log(response);
   if (response.ok) {
     document.location.replace("/sleep");
   } else {

@@ -31,6 +31,7 @@ module.exports = {
     return `${new Date(date * 1000).getMinutes()}`;
   },
 
+  //converts unix timestamp to string that says hours and minutes with the appropriate values inserted
   getTimeDifference: (date1) => {
     var date = parseInt(Date.now() / 1000);
     var seconds = date - date1;

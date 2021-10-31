@@ -5,11 +5,6 @@ COLOR PALETTE
   --dark: #ab32fe;
   --mid: #D196FC;
   --light: #EBD8FB;
-  --imperialRed: #e63946;
-  --honeyDew: #f1faee;
-  --powderBlue: #a8dadc;
-  --celadonBlue: #457b9d;
-  --prussianBlue: #1d3557;
 }
 /* Universal Selector */
 * {
@@ -39,7 +34,6 @@ h5 {
 
 a {
   color: var(--dark);
-  /* text-decoration: underline; */
   padding: 1rem;
 }
 a:hover {
@@ -49,7 +43,6 @@ a:hover {
 }
 /* ------HEADER------ */
 header {
-  /* padding: 1rem; */
   background-color: var(--mid);
   text-align: center;
   border-bottom: 0.25rem dashed var(--mid);
@@ -72,8 +65,6 @@ main {
   border: 0.2rem solid var(--mid);
 }
 .card {
-  /* justify-content: center;
-  align-items: center; */
   border: 0.5rem dotted var(--mid);
   background-color: var(--light);
 }
@@ -101,24 +92,3 @@ main {
 input, .form-control, .form-select, .input-group-text {
   border:1px solid var(--mid);
 }
-/*
-.no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-}
-.card {
-  background-color: unset;
-  border: 0.25rem dashed var(--powderBlue);
-  margin-top: 0.25rem;
-}
-.btn {
-  background-color: var(--imperialRed);
-  color: var(--honeyDew);
-  font: unset;
-}
-.list-group-item {
-  background-color: var(--prussianBlue);
-  text-align: center;
-  color: var(--honeyDew);
-  margin: 0.25rem;
-} */

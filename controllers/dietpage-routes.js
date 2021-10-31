@@ -1,12 +1,9 @@
 const withAuth = require("../utils/auth");
-
 const { User, Diet } = require("../models");
-
 const router = require("express").Router();
-
 const { Op } = require("sequelize");
 
-// get diet data
+// get diet data from the database
 router.get("/", withAuth, async (req, res) => {
   const compareTime = Date.now() / 1000 - 604801;
   const compareTimeInt = parseInt(compareTime);
@@ -14,7 +11,6 @@ router.get("/", withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
     });
-
     const dietData = await Diet.findAll({
       where: {
         baby_id: {
@@ -28,7 +24,6 @@ router.get("/", withAuth, async (req, res) => {
         },
       },
     });
-
     const recentMealData = await Diet.findAll({
       where: {
         baby_id: {
@@ -38,13 +33,11 @@ router.get("/", withAuth, async (req, res) => {
           [Op.gt]: compareTimeInt,
         },
       },
+      order: [["time", "DESC"]],
     });
-
-    // 604801 = one week
-
     const babyData = dietData.map((data) => data.get({ plain: true }));
     const recentMeals = recentMealData.map((data) => data.get({ plain: true }));
-
+    //declare variables to store daily average bottle usage
     let sunday = 0;
     let monday = 0;
     let tuesday = 0;
@@ -52,7 +45,7 @@ router.get("/", withAuth, async (req, res) => {
     let thursday = 0;
     let friday = 0;
     let saturday = 0;
-
+    //separates database values into days and adds bottle usage to the day variables
     for (var i = 0; i < babyData.length; i++) {
       var keyTime = babyData[i].time;
       var days = [
@@ -90,6 +83,7 @@ router.get("/", withAuth, async (req, res) => {
           break;
       }
     }
+    //creates array of objects to send to the view
     var foodQuantity = [
       { day: "Sunday", quantity: sunday },
       { day: "Monday", quantity: monday },
@@ -99,11 +93,10 @@ router.get("/", withAuth, async (req, res) => {
       { day: "Friday", quantity: friday },
       { day: "Saturday", quantity: saturday },
     ];
-
+    //sorts the array so that today's day is the first value
     function sort_days(days) {
       var day_of_week = new Date().getDay();
       var list = days;
-      // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       var sorted_list = list
         .slice(day_of_week)
         .concat(list.slice(0, day_of_week));

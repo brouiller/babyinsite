@@ -1,50 +1,70 @@
-{{#each newBabyData as |baby|}}
-
-  <div class="card mb-3 p-2 w-100">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="/imgs/diaper.png" class="img-fluid" alt="diaper icon" />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Diaper</h5>
-          <p class="card-text">{{baby.name}}'s diaper was changed
-            <span class="fw-bold">{{getTimeDifference diapers.time}}</span></p>
-        </div>
+<div class="card mb-3 p-2 w-100">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/imgs/diaper.png" class="img-fluid" alt="diaper icon" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Diaper</h5>
+        <p class="card-text">
+          {{#if diaperDataRefined}}
+            {{#each babyData}}{{name}}{{/each}}'s diaper was changed
+            <span class="fw-bold">
+              {{#each diaperDataRefined}}{{getTimeDifference time}}{{/each}}
+            </span>
+          {{else}}
+            No data. Please input last diaper change
+          {{/if}}
+        </p>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="card mb-3 p-2 w-100">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="/imgs/bottle.png" class="img-fluid" alt="baby bottle icon" />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Diet</h5>
-          <p class="card-text">{{baby.name}}
+<div class="card mb-3 p-2 w-100">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/imgs/bottle.png" class="img-fluid" alt="baby bottle icon" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Diet</h5>
+        <p class="card-text">
+          {{#if dietDataRefined}}
+            {{#each babyData}}{{name}}{{/each}}
             ate
-            <span class="fw-bold">{{getTimeDifference diet.time}}</span></p>
-        </div>
+            <span class="fw-bold">
+              {{#each dietDataRefined}}{{getTimeDifference time}}{{/each}}
+            </span>
+          {{else}}
+            No data. Please input last feeding.
+          {{/if}}
+        </p>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="card mb-3 p-2 w-100">
-    <div class="row g-0">
-      <div class="col-md-4">
-        <img src="/imgs/sleep.png" class="img-fluid" alt="sleep icon" />
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Sleep</h5>
-          <p class="card-text">{{baby.name}}
+<div class="card mb-3 p-2 w-100">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="/imgs/sleep.png" class="img-fluid" alt="sleep icon" />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Sleep</h5>
+        <p class="card-text">
+          {{#if sleepDataRefined}}
+            {{#each babyData}}{{name}}{{/each}}
             slept
-            <span class="fw-bold">{{getTimeDifference sleep.time}}</span></p>
-        </div>
+            <span class="fw-bold">
+              {{#each sleepDataRefined}}{{getTimeDifference time}}{{/each}}
+            </span>
+          {{else}}
+            No data. Please input last sleep time.
+          {{/if}}
+        </p>
       </div>
     </div>
   </div>
-
-{{/each}}
+</div>

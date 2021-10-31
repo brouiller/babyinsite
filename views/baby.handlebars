@@ -1,7 +1,7 @@
-<div class="mb-3 p-2 input-container w-100">
-  <form id="baby-form" class="row align-items-center justify-content-center">
+
+  <form id="baby-form">
     <h2>Baby</h2>
-    <div class="col-sm-auto form-floating m-3">
+    <div class="mb-3">
       <label for="babyDropdown" class="form-label mx-2">Choose your baby</label>
       <select name="babyDropdown" id="babyDropdown" class="form-select">
         <option value=""></option>
@@ -13,7 +13,7 @@
       </select>
     </div>
     <h2>Or add a baby</h2>
-    <div class="col-sm-auto form-floating mb-3">
+    <div class="mb-3">
       <div class="input-group">
         <span class="input-group-text" id="name-label">Baby Name</span>
         <input
@@ -24,7 +24,7 @@
         />
       </div>
     </div>
-    <div class="col-sm-auto form-floating mb-3">
+    <div class="mb-3">
       <div class="input-group">
         <span class="input-group-text" id="dob-label">Date of Birth</span>
         <input
@@ -36,9 +36,9 @@
         />
       </div>
     </div>
-    <div class="row mb-3 w-75">
+    <div class="d-grid gap-2">
       <button type="submit" id="baby-btn" class="btn btn-primary">Submit</button>
     </div>
   </form>
-</div>
+
 <script src="/js/baby.js"></script>
