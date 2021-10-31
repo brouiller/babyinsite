@@ -1,46 +1,49 @@
 <div class="sleep container-fluid">
-    <section class="sleepChart">
-        <div>
-            <canvas id="myChart" width="50" height="50"></canvas>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-        </div>
-    </section>
-    <div class="sleepEntries">
-        {{!-- {{insert sleep data here}} --}}
+  <section class="sleepChart">
+    <div>
+      <canvas id="myChart" class="h-75"></canvas>
+      <script
+        src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+      ></script>
     </div>
+  </section>
+  <div class="sleepEntries m-3">
+    <table class="table table-hover table-borderless table-responsive-sm">
+      <thead>
+        <tr>
+          <th scope="col">Time</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each sleepData as |sleep|}}
+          <tr>
+            <td>
+              {{format_hourMin sleep.time}}
+            </td>
+            <td>
+              {{format_date sleep.time}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
 </div>
 
-
 <script>
-    
-let labels = ["awake", "asleep"];
-let values = [10, 14];
 
-{{!-- {{#each sortedSleepDataByDay}}
+  let labels = ["awake", "asleep"]; let values = [10, 14];
+
+  {{!-- {{#each sortedSleepDataByDay}}
     labels.push("{{day}}")
     daySleepArray.push("{{daySleep}}")
     nightSleepArray.push("{{nightSleep}}")
 {{/each}} --}}
 
-
-var ctx = document.getElementById('myChart').getContext('2d');
-    var sleepGraph = new Chart(ctx, {
-        type: 'doughnut',
-        data: { 
-            labels: labels,
-            datasets: [{
-                label: labels,
-                data: values,
-                backgroundColor: [
-                'rgba(153, 102, 255, 0.3)',
-                'rgba(13, 137, 219, 0.3)'
-                ],
-                borderColor: [
-                'rgba(153, 102, 255, 1)',                           
-                'rgba(13, 137, 219, 1)'
-                ],
-                borderWidth: 1,
-            }]
-    },
-});
+  var ctx = document.getElementById('myChart').getContext('2d'); var sleepGraph
+  = new Chart(ctx, { type: 'doughnut', data: { labels: labels, datasets: [{
+  label: labels, data: values, backgroundColor: [ 'rgba(153, 102, 255, 0.3)',
+  'rgba(13, 137, 219, 0.3)' ], borderColor: [ 'rgba(153, 102, 255, 1)',
+  'rgba(13, 137, 219, 1)' ], borderWidth: 1, }] }, });
 </script>

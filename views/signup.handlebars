@@ -1,28 +1,56 @@
-<div class="card">
-  <div class="card-header">
-    <h2>Sign Up</h2>
+<form id="signup-form">
+  <h2>Sign Up</h2>
+  <div class="mb-3">
+    <label for="first_name" class="form-label">First Name</label>
+    <input
+      type="text"
+      id="first_name"
+      aria-label="First name"
+      class="form-control"
+    />
   </div>
-  <div id="signup">
-    <form id="signup-form" class="card-body">
-      <div>
-        <label for="first_name">First Name</label>
-        <input type="text" id="first_name" />
-      </div>
-      <div>
-        <label for="last_name">Last Name</label>
-        <input type="text" id="last_name" />
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input type="text" id="email" />
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" />
-      </div>
-      <button type="submit" id="signup-btn" class="btn">Sign up</button>
-      <a href="/login">Click here to Log In</a>
-    </form>
+   <div class="mb-3">
+    <label for="last_name" class="form-label">Last Name</label>
+    <input
+      type="text"
+      id="last_name"
+      aria-label="Last name"
+      class="form-control"
+    />
   </div>
-</div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      aria-describedby="emailHelp"
+    />
+    <div id="emailHelp" class="form-text">We'll never share your email with
+      anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      aria-describedby="passwordHelp"
+    />
+    <div id="passwordHelp" class="form-text">Your password must be at least 8
+      characters long.</div>
+  </div>
+  <div class="d-grid gap-2">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      aria-describedby="buttonHelp"
+      id="signup-btn"
+    >Submit</button></div>
+  <div id="buttonHelp" class="form-text"><a
+      type="button"
+      href="/login"
+      class="rounded"
+    >Click here to Log in instead</a></div>
+</form>
 <script src="/js/signup.js"></script>

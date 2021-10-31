@@ -35,9 +35,9 @@ document
 const dietFormHandler = async function (event) {
   event.preventDefault();
 
-  const foodEl = document.querySelector("#food-type");
-  const quantityEl = document.querySelector("#food-quantity");
-  const eatTimeEl = document.querySelector("#eat-time");
+  const foodEl = document.querySelector("#diet-type");
+  const quantityEl = document.querySelector("#dietChangeQuantity");
+  const eatTimeEl = document.querySelector("#dietChangeTime");
 
   // convert time to timestamp
   let timeValue = eatTimeEl.value;
@@ -71,7 +71,7 @@ document
 const sleepFormHandler = async function (event) {
   event.preventDefault();
 
-  const sleepTimeEl = document.querySelector("#sleep-time");
+  const sleepTimeEl = document.querySelector("#sleep-changeTime");
 
   // convert time to timestamp
   let timeValue = sleepTimeEl.value;

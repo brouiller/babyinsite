@@ -1,33 +1,44 @@
-<div class="card">
-  <div class="card-header">
+<div class="mb-3 p-2 input-container w-100">
+  <form id="baby-form" class="row align-items-center justify-content-center">
     <h2>Baby</h2>
-  </div>
-  <div id="baby">
-    <form id="baby-form" class="card-body">
-      <label for="babyDropdown">Choose a baby:</label>
-
-      <select name="babyDropdown" id="babyDropdown">
+    <div class="col-sm-auto form-floating m-3">
+      <label for="babyDropdown" class="form-label mx-2">Choose your baby</label>
+      <select name="babyDropdown" id="babyDropdown" class="form-select">
         <option value=""></option>
         {{#each babyData as |baby|}}
-          <option value="{{baby.id}}">{{baby.name}} - {{format_date baby.dob}}</option>
+          <option value="{{baby.id}}">{{baby.name}}
+            -
+            {{format_date baby.dob}}</option>
         {{/each}}
       </select>
-      <p>Or add a baby</p>
-      <div>
-        <label for="name">Name:</label>
-        <input type="text" id="name" />
+    </div>
+    <h2>Or add a baby</h2>
+    <div class="col-sm-auto form-floating mb-3">
+      <div class="input-group">
+        <span class="input-group-text" id="name-label">Baby Name</span>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          aria-describedby="name-label"
+        />
       </div>
-      <div>
-        <label for="dob">Date of birth:</label>
-        <input type="date" id="dob" />
+    </div>
+    <div class="col-sm-auto form-floating mb-3">
+      <div class="input-group">
+        <span class="input-group-text" id="dob-label">Date of Birth</span>
+        <input
+          type="date"
+          id="dob"
+          class="form-control"
+          name="dob"
+          aria-describedby="dob-label"
+        />
       </div>
-      <button
-        type="submit"
-        id="baby-btn"
-        class="btn"
-      >Submit</button>
-
-    </form>
-  </div>
+    </div>
+    <div class="row mb-3 w-75">
+      <button type="submit" id="baby-btn" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
 </div>
 <script src="/js/baby.js"></script>
