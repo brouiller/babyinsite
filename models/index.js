@@ -1,4 +1,3 @@
-//import models
 const Baby = require("./Baby");
 const Diaper = require("./Diaper");
 const Diet = require("./Diet");

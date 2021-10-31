@@ -1,9 +1,6 @@
 const withAuth = require("../utils/auth");
-
 const { Diaper, User } = require("../models");
-
 const router = require("express").Router();
-
 const { Op } = require("sequelize");
 
 // get diaper data
@@ -14,7 +11,6 @@ router.get("/", withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
     });
-    // returns only diapers now
     const diaperData = await Diaper.findAll({
       where: {
         baby_id: {
@@ -24,10 +20,11 @@ router.get("/", withAuth, async (req, res) => {
           [Op.gt]: compareTimeInt,
         },
       },
+      order: [["time", "DESC"]],
     });
-
     const babyData = diaperData.map((data) => data.get({ plain: true }));
 
+    //declare variables to store daily average diaper usage
     let sunday = 0;
     let monday = 0;
     let tuesday = 0;
@@ -35,7 +32,7 @@ router.get("/", withAuth, async (req, res) => {
     let thursday = 0;
     let friday = 0;
     let saturday = 0;
-
+    //separates database values into days and adds diaper usage to the day variables
     for (var i = 0; i < babyData.length; i++) {
       var keyTime = babyData[i].time;
       var days = [
@@ -73,6 +70,7 @@ router.get("/", withAuth, async (req, res) => {
           break;
       }
     }
+    //creates array of objects to send to the view
     var diaperQuantity = [
       { day: "Sunday", quantity: sunday },
       { day: "Monday", quantity: monday },
@@ -82,11 +80,10 @@ router.get("/", withAuth, async (req, res) => {
       { day: "Friday", quantity: friday },
       { day: "Saturday", quantity: saturday },
     ];
-
+    //sorts the array so that today's day is the first value
     function sort_days(days) {
       var day_of_week = new Date().getDay();
       var list = days;
-      // ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       var sorted_list = list
         .slice(day_of_week)
         .concat(list.slice(0, day_of_week));
@@ -94,18 +91,15 @@ router.get("/", withAuth, async (req, res) => {
     }
 
     let sortedDiaperQuantity = sort_days(diaperQuantity);
-
-    // This part is weird, works just fine without the average object, but breaks when avg object is unshifted onto the array
+    //calculates average diaper usage
     let weeklyAverage =
       (sunday + monday + tuesday + wednesday + thursday + friday + saturday) /
-      7;
-
+      babyData.length;
+    //adds average diaper usage to the beginning of the chart
     sortedDiaperQuantity.unshift({
       day: "Average",
       quantity: weeklyAverage,
     });
-    console.log(sortedDiaperQuantity);
-
     res.render("diaper", {
       sortedDiaperQuantity,
       babyData,

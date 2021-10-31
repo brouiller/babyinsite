@@ -45,8 +45,6 @@ let values = [];
     values.push("{{quantity}}")
 {{/each}}
 
-console.log(values);
-
 const ctx = document.getElementById('myChart');
 const myChart = new Chart(ctx, {
     type: 'bar',
@@ -54,7 +52,7 @@ const myChart = new Chart(ctx, {
         {{!-- labels is labels:labels --}}
         labels,
         datasets: [{
-            label: 'oz of food per day',
+            label: 'fluid oz per day',
             data: values,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.3)',

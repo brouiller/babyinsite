@@ -17,14 +17,15 @@ const babyFormHandler = async function (event) {
     }),
     headers: { "Content-Type": "application/json" },
   });
+    if (response.status === 201) {
+      document.location.replace("/input");
+    } else if (response.status === 200) {
+      document.location.replace("/");
+    } else {
+      alert("Failed to save your baby");
+    }
 };
-
-const relocate = () => document.location.replace("/");
 
 document
   .querySelector("#baby-form")
   .addEventListener("submit", babyFormHandler);
-
-document
-  .querySelector("#baby-btn")
-  .addEventListener("click", relocate);

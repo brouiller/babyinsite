@@ -1,11 +1,16 @@
 <div class="sleep container-fluid">
   <section class="sleepChart">
+    {{#if awakeAsleep.1.time}}
+    <h2>Yesterday's Sleep/Awake Time</h2>
     <div>
       <canvas id="myChart" class="h-75"></canvas>
       <script
         src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
       ></script>
     </div>
+    {{else}}
+    <h2>Not enough data to display chart. Add more sleep times.</h2>
+    {{/if}}
   </section>
   <div class="sleepEntries m-3">
     <table class="table table-hover table-borderless table-responsive-sm">
@@ -16,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        {{#each sleepData as |sleep|}}
+        {{#each babyData as |sleep|}}
           <tr>
             <td>
               {{format_hourMin sleep.time}}
@@ -33,13 +38,11 @@
 
 <script>
 
-  let labels = ["awake", "asleep"]; let values = [10, 14];
+  let labels = ["awake", "asleep"]; let values = [];
 
-  {{!-- {{#each sortedSleepDataByDay}}
-    labels.push("{{day}}")
-    daySleepArray.push("{{daySleep}}")
-    nightSleepArray.push("{{nightSleep}}")
-{{/each}} --}}
+  {{#each awakeAsleep}}
+    values.push({{time}})
+  {{/each}}
 
   var ctx = document.getElementById('myChart').getContext('2d'); var sleepGraph
   = new Chart(ctx, { type: 'doughnut', data: { labels: labels, datasets: [{

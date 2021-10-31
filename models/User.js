@@ -49,7 +49,6 @@ User.init(
       beforeCreate: async (newUserData) => {
             newUserData.password = await bcrypt.hash(newUserData.password, 10);
             newUserData.email = await newUserData.email.toLowerCase();
-            console.log(newUserData.email);
         return newUserData;
       },
       beforeUpdate: async (updatedUserData) => {
