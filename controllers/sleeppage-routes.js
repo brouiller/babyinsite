@@ -42,14 +42,16 @@ router.get("/", withAuth, async (req, res) => {
     for (let i = 0; i < babyData.length; i += 2) {
       awakeTime += babyData[i + 1].time - babyData[i].time;
     }
-    awakeTime = parseFloat(awakeTime / 3600).toFixed(2);
+    awakeTime = awakeTime / 3600;
     let asleepTime = parseFloat(24 - awakeTime);
     let awakeAsleep = [];
     if (asleepTime === 24) {
       awakeAsleep = [{ false: false }, { false: false }];
     } else {
+
       awakeAsleep = [{ time: awakeTime }, { time: asleepTime }];
     }
+    console.log(awakeAsleep);
     res.render("sleep", {
       babyData,
       awakeAsleep,
