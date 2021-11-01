@@ -5,15 +5,24 @@ const { Op } = require("sequelize");
 
 // get sleep data from database
 router.get("/", withAuth, async (req, res) => {
+  //build date string to use in where clause
   let date = new Date(Date.now());
-
-  let dateString = `${date.getFullYear()}-${
-    date.getMonth() + 1
-  }-${date.getDate()}T00:00:00`;
-
-  let dateStringUnix = parseInt(Date.parse(dateString) / 1000);
-  let dateStringUnix2 = parseInt(dateStringUnix - 86400);
-
+  let wholeMonth = 0;
+  let wholeDate = 0;
+  if (date.getMonth() < 9) {
+    wholeMonth = date.getMonth() + 1;
+    wholeMonth = "0" + wholeMonth;
+  } else {
+    wholeMonth = date.getMonth() + 1;
+  }
+    if (date.getDate() < 10) {
+      wholeDate = date.getDate();
+      wholeDate = "0" + wholeDate;
+    } else {
+      wholeDate = date.getDate();
+    }
+  let dateString = `${date.getFullYear()}-${wholeMonth}-${wholeDate}T00:00:00`;
+  let dateStringUnix = Date.parse(dateString) / 1000;
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
@@ -24,15 +33,14 @@ router.get("/", withAuth, async (req, res) => {
         baby_id: {
           [Op.eq]: userData.baby_id,
         },
+        time: {
+          [Op.between]: [dateStringUnix - 86400, dateStringUnix],
+        },
       },
       order: [["time", "ASC"]],
     });
 
-    const babyData1 = sleepData.map((data) => data.get({ plain: true }));
-    console.log(babyData1)
-    const bData1 = babyData1.filter((value) => value.time >= dateStringUnix2
-    );
-    const babyData = bData1.filter((value) => value.time <= dateStringUnix)
+    const babyData = sleepData.map((data) => data.get({ plain: true }));
 
     //calculates time awake and asleep for the previous 24 hour period starting at midnight yesterday
     let awakeTime = 0;
@@ -42,16 +50,15 @@ router.get("/", withAuth, async (req, res) => {
     for (let i = 0; i < babyData.length; i += 2) {
       awakeTime += babyData[i + 1].time - babyData[i].time;
     }
-    awakeTime = awakeTime / 3600;
+    awakeTime = parseFloat(awakeTime / 3600).toFixed(2);
     let asleepTime = parseFloat(24 - awakeTime);
     let awakeAsleep = [];
-    // if (asleepTime == 24) {
-    //   awakeAsleep = [{ false: false }, { false: false }];
-    // } else {
+    if (asleepTime == 24) {
+      awakeAsleep = [{ false: false }, { false: false }];
+    } else {
 
       awakeAsleep = [{ time: awakeTime }, { time: asleepTime }];
-    // }
-    console.log(awakeAsleep);
+    }
     res.render("sleep", {
       babyData,
       awakeAsleep,

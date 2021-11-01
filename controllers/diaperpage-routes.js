@@ -32,6 +32,7 @@ router.get("/", withAuth, async (req, res) => {
     let thursday = 0;
     let friday = 0;
     let saturday = 0;
+    let notNullDays = 0;
     //separates database values into days and adds diaper usage to the day variables
     for (var i = 0; i < babyData.length; i++) {
       var keyTime = babyData[i].time;
@@ -92,9 +93,13 @@ router.get("/", withAuth, async (req, res) => {
 
     let sortedDiaperQuantity = sort_days(diaperQuantity);
     //calculates average diaper usage
-    let weeklyAverage =
-      (sunday + monday + tuesday + wednesday + thursday + friday + saturday) /
-      babyData.length;
+    let dayArray = [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
+    for (i = 0; i < dayArray.length; i++){
+      dayArray[i] ? notNullDays += 1 : notNullDays += 0;
+    }
+    let weeklyAverage = parseFloat((sunday + monday + tuesday + wednesday + thursday + friday + saturday) /
+      notNullDays).toFixed(1);
+
     //adds average diaper usage to the beginning of the chart
     sortedDiaperQuantity.unshift({
       day: "Average",
