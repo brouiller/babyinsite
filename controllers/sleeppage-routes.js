@@ -13,7 +13,7 @@ router.get("/", withAuth, async (req, res) => {
 
   let dateStringUnix = parseInt(Date.parse(dateString) / 1000);
   let dateStringUnix2 = parseInt(dateStringUnix - 86400);
-  
+
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
@@ -24,14 +24,16 @@ router.get("/", withAuth, async (req, res) => {
         baby_id: {
           [Op.eq]: userData.baby_id,
         },
-        time: {
-          [Op.between]: [dateStringUnix2, dateStringUnix],
-        },
       },
       order: [["time", "ASC"]],
     });
 
-    const babyData = sleepData.map((data) => data.get({ plain: true }));
+    const babyData1 = sleepData.map((data) => data.get({ plain: true }));
+    console.log(babyData1)
+    const bData1 = babyData1.filter((value) => value.time >= dateStringUnix2
+    );
+    const babyData = bData1.filter((value) => value.time <= dateStringUnix)
+
     //calculates time awake and asleep for the previous 24 hour period starting at midnight yesterday
     let awakeTime = 0;
     if (babyData.length % 2 !== 0) {
