@@ -24,9 +24,6 @@ router.get("/", withAuth, async (req, res) => {
         baby_id: {
           [Op.eq]: userData.baby_id,
         },
-        time: {
-          [Op.gt]: dateStringUnix2,
-        },
       },
       order: [["time", "ASC"]],
     });
