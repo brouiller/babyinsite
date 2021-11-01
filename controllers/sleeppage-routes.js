@@ -45,7 +45,7 @@ router.get("/", withAuth, async (req, res) => {
     awakeTime = awakeTime / 3600;
     let asleepTime = parseFloat(24 - awakeTime);
     let awakeAsleep = [];
-    if (asleepTime === 24) {
+    if (asleepTime == 24) {
       awakeAsleep = [{ false: false }, { false: false }];
     } else {
 
