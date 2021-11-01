@@ -11,9 +11,9 @@ router.get("/", withAuth, async (req, res) => {
     date.getMonth() + 1
   }-${date.getDate()}T00:00:00`;
 
-  let dateStringUnix = Date.parse(dateString) / 1000;
-  let dateStringUnix2 = dateStringUnix - 86400;
-
+  let dateStringUnix = parseInt(Date.parse(dateString) / 1000);
+  let dateStringUnix2 = parseInt(dateStringUnix - 86400);
+  
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ["password"] },
