@@ -11,7 +11,7 @@ router.get("/", withAuth, async (req, res) => {
     date.getMonth() + 1
   }-${date.getDate()}T00:00:00`;
 
-  dateStringUnix = Date.parse(dateString) / 1000;
+  let dateStringUnix = Date.parse(dateString) / 1000;
 
   try {
     const userData = await User.findByPk(req.session.user_id, {
