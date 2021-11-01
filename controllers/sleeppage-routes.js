@@ -12,6 +12,7 @@ router.get("/", withAuth, async (req, res) => {
   }-${date.getDate()}T00:00:00`;
 
   let dateStringUnix = Date.parse(dateString) / 1000;
+  let dateStringUnix2 = dateStringUnix - 86400;
 
   try {
     const userData = await User.findByPk(req.session.user_id, {
@@ -24,7 +25,7 @@ router.get("/", withAuth, async (req, res) => {
           [Op.eq]: userData.baby_id,
         },
         time: {
-          [Op.between]: [dateStringUnix - 86400, dateStringUnix],
+          [Op.between]: [dateStringUnix2, dateStringUnix],
         },
       },
       order: [["time", "ASC"]],
